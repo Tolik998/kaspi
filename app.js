@@ -116,10 +116,6 @@ function idCardScreen() {
     <div id="qrModal" class="qr-modal" aria-hidden="true">
       <div id="qrOverlay" class="qr-overlay" aria-label="Close"></div>
       <div class="qr-sheet" role="dialog" aria-modal="true">
-        <div class="qr-top">
-          <div class="qr-handle"></div>
-          <button id="qrClose" class="qr-close" type="button" aria-label="Закрыть">×</button>
-        </div>
         <div class="qr-content">
           <img src="${IMG_QR}" alt="Kaspi QR" />
         </div>
@@ -210,11 +206,11 @@ function bind() {
   const presentBtn = document.getElementById('presentBtn');
   const qrModal    = document.getElementById('qrModal');
   const qrOverlay  = document.getElementById('qrOverlay');
-  const qrCloseBtn = document.getElementById('qrClose');
   if (presentBtn && qrModal) {
     const setOpen = (open) => {
       qrModal.classList.toggle('open', open);
       qrModal.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.documentElement.style.overflow = open ? 'hidden' : '';
       document.body.style.overflow = open ? 'hidden' : '';
     };
     presentBtn.addEventListener('click', () => {
@@ -223,7 +219,6 @@ function bind() {
     const closeModal = () => setOpen(false);
     window.__closeQrModal = closeModal;
     qrOverlay && qrOverlay.addEventListener('click', closeModal);
-    qrCloseBtn && qrCloseBtn.addEventListener('click', closeModal);
     if (!qrEscBound) {
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && typeof window.__closeQrModal === 'function') window.__closeQrModal();
