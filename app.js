@@ -83,7 +83,7 @@ function idCardScreen() {
   const photo = state.idPhoto;
 
   const photoContent = photo
-    ? `<img id="zoomImg" src="${photo}" style="position:absolute;top:-10px;left:0;width:100%;height:calc(100% + 10px);object-fit:cover;object-position:50% 0%;transform-origin:center center;" />`
+    ? `<img id="zoomImg" src="${photo}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;transform-origin:center center;--shiftY:-10px;transform:translateY(var(--shiftY)) scale(1);" />`
     : `<div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
         <span style="font-size:15px;color:#999;text-align:center;line-height:1.6;">Загрузите<br>удостоверение</span>
        </div>`;
@@ -247,19 +247,19 @@ function bind() {
         const dx = e.touches[0].clientX - e.touches[1].clientX;
         const dy = e.touches[0].clientY - e.touches[1].clientY;
         scale = Math.min(Math.max(lastScale * (Math.hypot(dx, dy) / startDist), 1), 5);
-        zoomImg.style.transform = `scale(${scale})`;
+        zoomImg.style.transform = `translateY(var(--shiftY)) scale(${scale})`;
       }
     }, { passive: false });
     pArea.addEventListener('touchend', () => {
       lastScale = scale;
-      if (scale < 1.05) { scale = 1; zoomImg.style.transform = 'scale(1)'; }
+      if (scale < 1.05) { scale = 1; zoomImg.style.transform = 'translateY(var(--shiftY)) scale(1)'; }
     });
     let lastTap = 0;
     pArea.addEventListener('touchend', () => {
       const now = Date.now();
       if (now - lastTap < 300) {
         scale = 1;
-        zoomImg.style.transform = 'scale(1)';
+        zoomImg.style.transform = 'translateY(var(--shiftY)) scale(1)';
         zoomImg.style.transition = 'transform 0.2s';
         setTimeout(() => zoomImg.style.transition = '', 200);
       }
