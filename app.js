@@ -1,10 +1,34 @@
 'use strict';
 
 const app = document.getElementById('app');
+const STORAGE_KEY = 'kaspi:idcard:v1';
+function loadPersisted() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (!data || typeof data !== 'object') return null;
+    return data;
+  } catch {
+    return null;
+  }
+}
+function savePersisted(partial) {
+  try {
+    const prev = loadPersisted() || {};
+    const next = { ...prev, ...partial, _ts: Date.now() };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  } catch {
+    // ignore storage errors (quota/private mode)
+  }
+}
+
+const persisted = loadPersisted() || {};
 const state = {
   screen: 'home',
-  idPhoto: null,
-  idTab: 'doc',
+  idPhoto: persisted.idPhoto ?? null,
+  idTab: persisted.idTab ?? 'doc',
+  req: persisted.req && typeof persisted.req === 'object' ? persisted.req : {},
 };
 
 const ic = {
@@ -129,6 +153,7 @@ function idCardScreen() {
           <div style="font-size:12px;color:#aaa;margin-bottom:4px;">${f.label}</div>
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <input type="text" id="req_${f.key}" placeholder="${f.placeholder}"
+              value="${String(state.req?.[f.key] ?? '').replaceAll('"','&quot;')}"
               style="flex:1;border:none;background:transparent;font-size:17px;color:#1f1f24;outline:none;font-family:inherit;" />
             <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('req_${f.key}').value)"
               style="background:transparent;border:none;padding:4px;color:#bbb;cursor:pointer;">
@@ -184,8 +209,8 @@ function bind() {
   const tabDoc = document.getElementById('tabDoc');
   const tabReq = document.getElementById('tabReq');
   if (tabDoc) {
-    tabDoc.addEventListener('click', () => { state.idTab = 'doc'; render(); });
-    tabReq.addEventListener('click', () => { state.idTab = 'req'; render(); });
+    tabDoc.addEventListener('click', () => { state.idTab = 'doc'; savePersisted({ idTab: state.idTab }); render(); });
+    tabReq.addEventListener('click', () => { state.idTab = 'req'; savePersisted({ idTab: state.idTab }); render(); });
   }
 
   // Фото
@@ -197,7 +222,11 @@ function bind() {
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = ev => { state.idPhoto = ev.target.result; render(); };
+      reader.onload = ev => {
+        state.idPhoto = ev.target.result;
+        savePersisted({ idPhoto: state.idPhoto });
+        render();
+      };
       reader.readAsDataURL(file);
     });
   }
@@ -226,6 +255,15 @@ function bind() {
       qrEscBound = true;
     }
   }
+
+  // Реквизиты: сохраняем ввод локально
+  document.querySelectorAll('input[id^="req_"]').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const key = inp.id.slice(4);
+      state.req[key] = inp.value;
+      savePersisted({ req: state.req });
+    });
+  });
 
   // Pinch-to-zoom
   const zoomImg  = document.getElementById('zoomImg');
