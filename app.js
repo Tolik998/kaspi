@@ -154,7 +154,7 @@ function idCardScreen() {
       <!-- МОДАЛЬНОЕ ОКНО QR -->
       <div id="qrModal" style="display:none;position:fixed;bottom:0;left:0;right:0;top:0;z-index:100;">
         <div id="qrOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;background:#f2f2f7;border-radius:20px 20px 0 0;padding:20px 24px 44px;">
+        <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,393px);background:#f2f2f7;border-radius:20px 20px 0 0;padding:20px 24px 44px;">
           <div style="width:40px;height:4px;background:#ccc;border-radius:2px;margin:0 auto 20px;"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
             <div style="font-size:20px;font-weight:700;color:#1f1f24;">Удостоверение личности</div>
