@@ -83,7 +83,7 @@ function idCardScreen() {
   const photo = state.idPhoto;
 
   const photoContent = photo
-    ? `<img id="zoomImg" src="${photo}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transform-origin:center center;" />`
+    ? `<img id="zoomImg" src="${photo}" style="position:absolute;top:-10px;left:0;width:100%;height:calc(100% + 10px);object-fit:cover;object-position:50% 0%;transform-origin:center center;" />`
     : `<div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
         <span style="font-size:15px;color:#999;text-align:center;line-height:1.6;">Загрузите<br>удостоверение</span>
        </div>`;
