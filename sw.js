@@ -1,9 +1,14 @@
-const CACHE = 'kaspi-v1';
+const CACHE = 'kaspi-v2';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
+  './images.js',
+  './img_home.png',
+  './img_transfer.png',
+  './img_gov.png',
+  './img_qr.png',
   './manifest.json',
 ];
 
@@ -25,14 +30,39 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+
+  const url = new URL(e.request.url);
+  const isCritical =
+    url.pathname.endsWith('/app.js') ||
+    url.pathname.endsWith('/style.css') ||
+    url.pathname.endsWith('/images.js') ||
+    url.pathname === '/';
+
   e.respondWith(
-    caches.match(e.request).then(cached => {
+    (async () => {
+      const cache = await caches.open(CACHE);
+
+      if (isCritical) {
+        try {
+          const res = await fetch(e.request);
+          cache.put(e.request, res.clone());
+          return res;
+        } catch {
+          const cached = await cache.match(e.request);
+          if (cached) return cached;
+          return cache.match('./index.html');
+        }
+      }
+
+      const cached = await cache.match(e.request);
       if (cached) return cached;
-      return fetch(e.request).then(res => {
-        const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
+      try {
+        const res = await fetch(e.request);
+        cache.put(e.request, res.clone());
         return res;
-      }).catch(() => caches.match('./index.html'));
-    })
+      } catch {
+        return cache.match('./index.html');
+      }
+    })()
   );
 });
