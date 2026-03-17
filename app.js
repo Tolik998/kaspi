@@ -25,8 +25,8 @@ const ic = {
 
 let qrEscBound = false;
 
-function statusBar() {
-  return `<div style="height:44px;background:#fff;"></div>`;
+function statusBar(height = 44) {
+  return `<div style="height:${height}px;background:#fff;"></div>`;
 }
 
 function bottomNav(active = 'home') {
@@ -145,7 +145,7 @@ function idCardScreen() {
 
   return `
     <div style="background:#fff;min-height:100vh;display:flex;flex-direction:column;">
-      ${statusBar()}
+      ${statusBar(42)}
       <div class="page-header" style="background:#fff;border-bottom:1px solid #f0f0f0;flex:0 0 auto;">
         <button class="back-btn" data-nav="gov">${ic.back}</button>
         <div class="page-title">Удостоверение личности</div>
