@@ -50,12 +50,7 @@ const ic = {
 };
 
 function statusBar() {
-  return `
-    <div class="status-bar">
-      <div class="status-left">04:45</div>
-      <div class="island"></div>
-      <div class="status-right">${ic.signal}${ic.wifi}${ic.battery}</div>
-    </div>`;
+  return `<div style="height:44px;background:#fff;"></div>`;
 }
 
 function bottomNav(active = 'home') {
