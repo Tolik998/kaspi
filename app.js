@@ -102,7 +102,7 @@ function idCardScreen() {
         <input type="file" id="photoInput" accept="image/*" capture="user" style="display:none;" />
       </div>
     </div>
-    <div style="padding:14px 16px 28px;background:#fff;flex:0 0 auto;display:flex;flex-direction:column;gap:10px;">
+    <div style="padding:14px 16px 38px;background:#fff;flex:0 0 auto;display:flex;flex-direction:column;gap:10px;">
       <button class="id-btn-primary" id="presentBtn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/><path d="M21 14h-3M21 21v-3h-4M17 21h-3"/></svg>
         Предъявить документ
@@ -111,10 +111,10 @@ function idCardScreen() {
     </div>
 
     <!-- QR MODAL -->
-    <div id="qrModal" style="display:none;position:fixed;bottom:0;left:0;right:0;top:0;z-index:100;">
-      <div id="qrOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);"></div>
-      <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,393px);border-radius:20px 20px 0 0;overflow:hidden;">
-        <img src="${IMG_QR}" style="width:100%;display:block;" />
+    <div id="qrModal" class="qr-modal" aria-hidden="true">
+      <div id="qrOverlay" class="qr-overlay" aria-label="Close"></div>
+      <div class="qr-sheet" role="dialog" aria-modal="true">
+        <img src="${IMG_QR}" alt="Kaspi QR" />
       </div>
     </div>`;
 
@@ -133,7 +133,7 @@ function idCardScreen() {
           </div>
         </div>`).join('')}
     </div>
-    <div style="padding:14px 16px 28px;background:#fff;flex:0 0 auto;">
+    <div style="padding:14px 16px 38px;background:#fff;flex:0 0 auto;">
       <button class="id-btn-secondary" style="width:100%;height:54px;border-radius:14px;border:1.5px solid #2c63d5;color:#2c63d5;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;">
         ${ic.share} Отправить реквизиты
       </button>
@@ -203,11 +203,19 @@ function bind() {
   const qrModal    = document.getElementById('qrModal');
   const qrOverlay  = document.getElementById('qrOverlay');
   if (presentBtn && qrModal) {
+    const setOpen = (open) => {
+      qrModal.classList.toggle('open', open);
+      qrModal.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
     presentBtn.addEventListener('click', () => {
-      qrModal.style.display = 'block';
+      setOpen(true);
     });
-    const closeModal = () => { qrModal.style.display = 'none'; };
+    const closeModal = () => setOpen(false);
     qrOverlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
   }
 
   // Pinch-to-zoom
