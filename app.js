@@ -142,7 +142,7 @@ function idCardScreen() {
       </div>
 
       <div style="padding:14px 16px 28px;background:#fff;flex:0 0 auto;display:flex;flex-direction:column;gap:10px;">
-        <button class="id-btn-primary">
+        <button class="id-btn-primary" id="presentBtn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/><path d="M21 14h-3M21 21v-3h-4M17 21h-3"/></svg>
           Предъявить документ
         </button>
@@ -150,6 +150,25 @@ function idCardScreen() {
           ${ic.share} Отправить документ
         </button>
       </div>
+
+      <!-- МОДАЛЬНОЕ ОКНО QR -->
+      <div id="qrModal" style="display:none;position:fixed;bottom:0;left:0;right:0;top:0;z-index:100;">
+        <div id="qrOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:#f2f2f7;border-radius:20px 20px 0 0;padding:20px 24px 44px;">
+          <div style="width:40px;height:4px;background:#ccc;border-radius:2px;margin:0 auto 20px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div style="font-size:20px;font-weight:700;color:#1f1f24;">Удостоверение личности</div>
+            <button id="closeQr" style="background:transparent;border:none;font-size:22px;color:#666;padding:4px;line-height:1;">✕</button>
+          </div>
+          <div style="text-align:center;color:#555;font-size:16px;margin-bottom:20px;">Покажите QR-код сотруднику</div>
+          <div style="display:flex;justify-content:center;margin-bottom:20px;">
+            <canvas id="qrCanvas" width="200" height="200" style="border-radius:8px;"></canvas>
+          </div>
+          <div style="text-align:center;color:#888;font-size:15px;margin-bottom:8px;">или скажите код</div>
+          <div style="text-align:center;font-size:34px;font-weight:800;color:#1f1f24;letter-spacing:6px;" id="qrCode"></div>
+        </div>
+      </div>
+
     </div>`;
 }
 
@@ -199,7 +218,54 @@ function bind() {
     });
   }
 
-  // Pinch-to-zoom
+  // Кнопка Предъявить документ — открыть QR модалку
+  const presentBtn = document.getElementById('presentBtn');
+  const qrModal    = document.getElementById('qrModal');
+  const closeQr    = document.getElementById('closeQr');
+  const qrOverlay  = document.getElementById('qrOverlay');
+  const qrCode     = document.getElementById('qrCode');
+  const qrCanvas   = document.getElementById('qrCanvas');
+
+  if (presentBtn && qrModal) {
+    presentBtn.addEventListener('click', () => {
+      // генерируем 6-значный код
+      const code = String(Math.floor(100000 + Math.random() * 900000));
+      qrCode.textContent = code;
+
+      // рисуем простой QR-like паттерн на canvas
+      const ctx = qrCanvas.getContext('2d');
+      const size = 200;
+      const cell = 10;
+      const cols = size / cell;
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, size, size);
+      ctx.fillStyle = '#111';
+
+      // генерируем псевдо-QR из кода
+      const seed = parseInt(code);
+      for (let r = 0; r < cols; r++) {
+        for (let c = 0; c < cols; c++) {
+          const val = (seed * (r + 1) * (c + 1) * 2654435761) % 100;
+          if (val > 45) ctx.fillRect(c * cell, r * cell, cell, cell);
+        }
+      }
+      // угловые маркеры QR
+      [[0,0],[0,cols-7],[cols-7,0]].forEach(([x,y]) => {
+        ctx.fillStyle = '#111';
+        ctx.fillRect(x*cell, y*cell, 7*cell, 7*cell);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect((x+1)*cell, (y+1)*cell, 5*cell, 5*cell);
+        ctx.fillStyle = '#111';
+        ctx.fillRect((x+2)*cell, (y+2)*cell, 3*cell, 3*cell);
+      });
+
+      qrModal.style.display = 'block';
+    });
+
+    const closeModal = () => { qrModal.style.display = 'none'; };
+    closeQr.addEventListener('click', closeModal);
+    qrOverlay.addEventListener('click', closeModal);
+  }
   const zoomImg = document.getElementById('zoomImg');
   if (zoomImg) {
     let scale = 1, lastScale = 1;
