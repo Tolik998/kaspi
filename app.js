@@ -51,8 +51,8 @@ function homeScreen() {
   return `
     <div style="position:relative;width:100%;background:#fff;">
       <img src="${IMG_HOME}" style="width:100%;display:block;" />
-      <button data-nav="transfer" style="position:absolute;top:24%;left:75%;width:25%;height:8%;background:transparent;border:none;cursor:pointer;"></button>
-      <button data-nav="gov" style="position:absolute;top:32%;left:50%;width:25%;height:8%;background:transparent;border:none;cursor:pointer;"></button>
+      <button data-nav="transfer" style="position:absolute;top:19%;left:75%;width:25%;height:8%;background:transparent;border:none;cursor:pointer;"></button>
+      <button data-nav="gov" style="position:absolute;top:27%;left:50%;width:25%;height:8%;background:transparent;border:none;cursor:pointer;"></button>
     </div>`;
 }
 
@@ -60,7 +60,7 @@ function homeScreen() {
 function transferScreen() {
   return `
     <div style="position:relative;width:100%;background:#fff;">
-      <button data-nav="home" style="position:absolute;top:2%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
+      <button data-nav="home" style="position:absolute;top:0.5%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
       <img src="${IMG_TRANSFER}" style="width:100%;display:block;" />
     </div>`;
 }
@@ -69,9 +69,9 @@ function transferScreen() {
 function govScreen() {
   return `
     <div style="position:relative;width:100%;background:#f5f5f7;">
-      <button data-nav="home" style="position:absolute;top:2%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
+      <button data-nav="home" style="position:absolute;top:0.5%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
       <img src="${IMG_GOV}" style="width:100%;display:block;" />
-      <button data-nav="idcard" style="position:absolute;top:24%;left:2%;width:46%;height:16%;background:transparent;border:none;cursor:pointer;"></button>
+      <button data-nav="idcard" style="position:absolute;top:19%;left:2%;width:46%;height:16%;background:transparent;border:none;cursor:pointer;"></button>
     </div>`;
 }
 
