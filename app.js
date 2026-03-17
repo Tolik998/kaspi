@@ -58,36 +58,10 @@ function homeScreen() {
 
 /* TRANSFER */
 function transferScreen() {
-  const rows = [
-    { title: 'Между своими счетами', sub: '', icon: 'cycle' },
-    { title: 'Клиенту Kaspi', sub: 'На карту Kaspi Gold', icon: 'userMoney' },
-    { title: 'Карта другого банка', sub: 'С карты на карту', icon: 'cards' },
-    { title: 'Международные переводы', sub: 'По номеру карты или телефона', icon: 'globe' },
-    { title: 'Kaspi QR', sub: 'Сканируйте и платите', icon: 'qr' },
-  ];
   return `
-    <div class="inner-screen">
-      ${statusBar()}
-      <div class="page-header">
-        <button class="back-btn" data-nav="home">${ic.back}</button>
-        <div class="page-title">Переводы</div>
-      </div>
-      <div class="seg-tabs">
-        <button class="seg-tab active">Мои Переводы</button>
-        <button class="seg-tab">История</button>
-      </div>
-      <div class="list-section">
-        ${rows.map(r => `
-          <button class="list-item">
-            <div class="list-icon">${ic[r.icon]}</div>
-            <div class="list-text">
-              <div class="list-title">${r.title}</div>
-              ${r.sub ? `<div class="list-subtitle">${r.sub}</div>` : ''}
-            </div>
-            <span class="list-chev">${ic.chev}</span>
-          </button>`).join('')}
-      </div>
-      ${bottomNav('home')}
+    <div style="position:relative;width:100%;background:#fff;">
+      <button data-nav="home" style="position:absolute;top:4%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
+      <img src="img_transfer.png" style="width:100%;display:block;" />
     </div>`;
 }
 
