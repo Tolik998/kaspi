@@ -116,9 +116,6 @@ function idCardScreen() {
       <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,393px);border-radius:20px 20px 0 0;overflow:hidden;">
         <img src="${IMG_QR}" style="width:100%;display:block;" />
       </div>
-      <button id="qrCloseBtn" style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:102;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
     </div>`;
 
   const reqTab = `
@@ -211,8 +208,6 @@ function bind() {
     });
     const closeModal = () => { qrModal.style.display = 'none'; };
     qrOverlay.addEventListener('click', closeModal);
-    const qrCloseBtn = document.getElementById('qrCloseBtn');
-    if (qrCloseBtn) qrCloseBtn.addEventListener('click', closeModal);
   }
 
   // Pinch-to-zoom
