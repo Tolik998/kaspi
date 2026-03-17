@@ -102,7 +102,7 @@ function idCardScreen() {
         <input type="file" id="photoInput" accept="image/*" capture="user" style="display:none;" />
       </div>
     </div>
-    <div style="padding:14px 16px 38px;background:#fff;flex:0 0 auto;display:flex;flex-direction:column;gap:10px;">
+    <div style="padding:14px 16px 46px;background:#fff;flex:0 0 auto;display:flex;flex-direction:column;gap:10px;">
       <button class="id-btn-primary" id="presentBtn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/><path d="M21 14h-3M21 21v-3h-4M17 21h-3"/></svg>
         Предъявить документ
@@ -133,7 +133,7 @@ function idCardScreen() {
           </div>
         </div>`).join('')}
     </div>
-    <div style="padding:14px 16px 38px;background:#fff;flex:0 0 auto;">
+    <div style="padding:14px 16px 46px;background:#fff;flex:0 0 auto;">
       <button class="id-btn-secondary" style="width:100%;height:54px;border-radius:14px;border:1.5px solid #2c63d5;color:#2c63d5;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;">
         ${ic.share} Отправить реквизиты
       </button>
