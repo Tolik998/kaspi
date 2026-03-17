@@ -101,7 +101,7 @@ function idCardScreen() {
     <div style="flex:1;padding:0 16px;display:flex;flex-direction:column;justify-content:center;">
       <div id="photoArea" style="width:100%;aspect-ratio:3/4;background:#c8c8cc;position:relative;overflow:hidden;cursor:pointer;touch-action:none;border-radius:8px;">
         ${photoContent}
-        <input type="file" id="photoInput" accept="image/*" capture="user" style="display:none;" />
+        <input type="file" id="photoInput" accept="image/*" style="display:none;" />
       </div>
     </div>
     <div style="padding:14px 16px 46px;background:#fff;flex:0 0 auto;display:flex;flex-direction:column;gap:10px;">
