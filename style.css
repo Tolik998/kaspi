@@ -6,6 +6,7 @@
   --muted: #8f8f95;
   --line: #ececec;
   --phone-width: 393px;
+  --btn-lift: 10px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -131,11 +132,52 @@ button { -webkit-tap-highlight-color: transparent; }
 .product-price { background: #79c11b; color: #fff; font-weight: 800; font-size: 11px; padding: 3px 7px; display: inline-block; border-radius: 0 7px 0 0; }
 
 /* BOTTOM NAV */
-.bottom-nav { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-top: 1px solid #e8e8ea; padding: 10px 0 28px; }
+.bottom-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid #e8e8ea;
+  padding: 10px 0 calc(28px + var(--btn-lift));
+}
 .nav-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
 .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; color: #ababb3; font-size: 11px; padding: 4px 0; }
 .nav-item.active { color: var(--accent); }
 .home-bar { width: 134px; height: 5px; background: #000; border-radius: 999px; margin: 10px auto 0; }
+
+/* QR MODAL (bottom-sheet) */
+.qr-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+.qr-modal.open { display: block; }
+.qr-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+.qr-sheet {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(100%, var(--phone-width));
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  background: #fff;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.qr-sheet img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 /* PAGE HEADER */
 .page-header { display: flex; align-items: center; justify-content: center; position: relative; background: #fff; padding: 10px 16px 10px; border-bottom: 1px solid #f0f0f0; }
