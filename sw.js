@@ -1,14 +1,13 @@
-const CACHE = 'kaspi-v3';
+const CACHE = 'kaspi-v4';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
   './images.js',
-  './img_home.png',
-  './img_transfer.png',
-  './img_gov.png',
-  './img_qr.png',
+  './icons/icon-180.png',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
   './manifest.json',
 ];
 
@@ -36,6 +35,7 @@ self.addEventListener('fetch', e => {
     url.pathname.endsWith('/app.js') ||
     url.pathname.endsWith('/style.css') ||
     url.pathname.endsWith('/images.js') ||
+    url.pathname.startsWith('/icons/') ||
     url.pathname === '/';
 
   e.respondWith(
