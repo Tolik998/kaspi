@@ -114,7 +114,6 @@ function idCardScreen() {
     <div id="qrModal" style="display:none;position:fixed;bottom:0;left:0;right:0;top:0;z-index:100;">
       <div id="qrOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);"></div>
       <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,393px);border-radius:20px 20px 0 0;overflow:hidden;">
-        <button id="closeQr" style="position:absolute;top:0;right:0;width:100%;height:100%;background:transparent;border:none;cursor:pointer;z-index:1;"></button>
         <img src="${IMG_QR}" style="width:100%;display:block;" />
       </div>
     </div>`;
@@ -202,16 +201,12 @@ function bind() {
   // QR модалка
   const presentBtn = document.getElementById('presentBtn');
   const qrModal    = document.getElementById('qrModal');
-  const closeQr    = document.getElementById('closeQr');
   const qrOverlay  = document.getElementById('qrOverlay');
-  const qrCode     = document.getElementById('qrCode');
   if (presentBtn && qrModal) {
     presentBtn.addEventListener('click', () => {
-      qrCode.textContent = String(Math.floor(100000 + Math.random() * 900000));
       qrModal.style.display = 'block';
     });
     const closeModal = () => { qrModal.style.display = 'none'; };
-    closeQr.addEventListener('click', closeModal);
     qrOverlay.addEventListener('click', closeModal);
   }
 
