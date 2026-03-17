@@ -33,6 +33,16 @@ const ic = {
   cards:     `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="14" height="10" rx="2"/><rect x="8" y="8" width="14" height="10" rx="2"/><path d="M2 10h14"/></svg>`,
   globe:     `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>`,
   student:   `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="m3 9 9-4 9 4-9 4-9-4Z"/><path d="M7 11v4c0 1.5 2.3 3 5 3s5-1.5 5-3v-4"/><path d="M21 9v5"/></svg>`,
+  docIcon:   `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  carIcon:   `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+  licIcon:   `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 10h4M14 14h4"/></svg>`,
+  babyIcon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a9 9 0 0 1 13 0"/></svg>`,
+  moneyIcon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>`,
+  bankIcon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11"/></svg>`,
+  bizIcon:   `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`,
+  editIcon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+  personIcon:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`,
+  healthIcon:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
 
   signal:    `<svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="6" width="3" height="6" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="8" rx="0.5" fill="currentColor"/><rect x="9" y="1.5" width="3" height="10.5" rx="0.5" fill="currentColor" opacity="0.4"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="currentColor" opacity="0.3"/></svg>`,
   wifi:      `<svg width="17" height="13" viewBox="0 0 17 13"><path d="M8.5 10.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor"/><path d="M5.3 7.8a4.5 4.5 0 0 1 6.4 0" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M2.5 5a8 8 0 0 1 12 0" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/></svg>`,
@@ -187,7 +197,7 @@ function govScreen() {
         <div class="page-title">Госуслуги</div>
       </div>
       <div class="seg-tabs">
-        <button class="seg-tab active">Все услуги</button>
+        <button class="seg-tab active" data-nav="govservices">Все услуги</button>
         <button class="seg-tab">Мои заявки</button>
       </div>
       <div class="gov-search">
@@ -363,6 +373,8 @@ function render() {
   switch (state.screen) {
     case 'transfer': content = transferScreen(); break;
     case 'gov':      content = govScreen();      break;
+    case 'govservices': content = govServicesScreen(); break;
+    case 'digitaldocs': content = digitalDocsScreen(); break;
     case 'idcard':   content = idCardScreen();   break;
     default:         content = homeScreen();
   }
@@ -402,3 +414,74 @@ function bind() {
 }
 
 render();
+
+/* ── GOV SERVICES LIST ───────────────────────────────────────── */
+function govServicesScreen() {
+  const menuOptions = [
+    { title: 'Цифровые документы',                           icon: 'docIcon',    nav: 'digitaldocs' },
+    { title: 'Переоформление автомобиля',                    icon: 'carIcon',    nav: null },
+    { title: 'Замена водительских прав',                     icon: 'licIcon',    nav: null },
+    { title: 'Получение свидетельства о рождении',           icon: 'babyIcon',   nav: null },
+    { title: 'Пособия и выплаты',                            icon: 'moneyIcon',  nav: null },
+    { title: 'Получать пособия на Социальный счет',          icon: 'bankIcon',   nav: null },
+    { title: 'Зарегистрировать ИП',                          icon: 'bizIcon',    nav: null },
+    { title: 'Изменить реквизиты ИП',                        icon: 'editIcon',   nav: null },
+    { title: 'Социальный счёт',                              icon: 'personIcon', nav: null },
+    { title: 'Статус ОСМС',                                  icon: 'healthIcon', nav: null },
+  ];
+  return `
+    <div class="inner-screen">
+      ${statusBar()}
+      <div class="page-header">
+        <button class="back-btn" data-nav="gov">${ic.back}</button>
+        <div class="page-title">Госуслуги, штрафы, налоги</div>
+      </div>
+      <div style="padding:12px 16px;background:#fff;border-bottom:1px solid #f0f0f0;">
+        <div class="search-box" style="height:44px;border-radius:12px;background:#f0f0f2;">
+          ${ic.search}<span style="color:#9a9aa0;font-size:16px;">Поиск по Госуслугам</span>
+        </div>
+      </div>
+      <div style="background:#fff;">
+        ${menuOptions.map(item => `
+          <button class="gov-list-row" ${item.nav ? `data-nav="${item.nav}"` : ''}>
+            <div class="gov-list-icon">${ic[item.icon]}</div>
+            <div class="list-text"><div class="list-title">${item.title}</div></div>
+            <span style="color:#c8c8ce;">${ic.chev}</span>
+          </button>`).join('')}
+      </div>
+      ${bottomNav('home')}
+    </div>`;
+}
+
+/* ── DIGITAL DOCS SCREEN ─────────────────────────────────────── */
+function digitalDocsScreen() {
+  const docs = [
+    { title: 'Удостоверение личности', icon: 'licIcon',    nav: 'idcard' },
+    { title: 'Паспорт гражданина РК',  icon: 'docIcon',    nav: null },
+    { title: 'Справки',                icon: 'healthIcon', nav: null },
+  ];
+  return `
+    <div class="inner-screen">
+      ${statusBar()}
+      <div class="page-header" style="box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <button class="back-btn" data-nav="govservices">${ic.back}</button>
+        <div class="page-title">Цифровые документы</div>
+      </div>
+      <div style="background:#f5f5f7;padding:12px 16px 10px;">
+        <span style="font-size:14px;color:#1f1f24;">Не нашли нужный документ? </span>
+        <span style="font-size:14px;color:#1283c0;">Обновить документы</span>
+      </div>
+      <div style="background:#fff;padding:14px 16px 8px;font-size:18px;font-weight:700;color:#1f1f24;border-bottom:1px solid #f0f0f0;">
+        Мои документы
+      </div>
+      <div style="background:#fff;">
+        ${docs.map(d => `
+          <button class="gov-list-row" ${d.nav ? `data-nav="${d.nav}"` : ''}>
+            <div class="gov-list-icon">${ic[d.icon]}</div>
+            <div class="list-text"><div class="list-title">${d.title}</div></div>
+            <span style="color:#c8c8ce;">${ic.chev}</span>
+          </button>`).join('')}
+      </div>
+      ${bottomNav('home')}
+    </div>`;
+}
