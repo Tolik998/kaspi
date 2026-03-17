@@ -79,63 +79,186 @@ function bottomNav(active = 'home') {
 
 /* HOME */
 function homeScreen() {
-  const menuItems = [
-    { label: 'Магазин',   icon: 'shop',      nav: null },
-    { label: 'Мой Банк',  icon: 'bank',      nav: null },
-    { label: 'Платежи',   icon: 'payments',  nav: null },
-    { label: 'Переводы',  icon: 'transfers', nav: 'transfer' },
-    { label: 'Magnum',    icon: 'magnum',    nav: null },
-    { label: 'Travel',    icon: 'travel',    nav: null },
-    { label: 'Госуслуги', icon: 'gov',       nav: 'gov' },
-    { label: 'Работа',    icon: 'jobs',      nav: null },
-  ];
   return `
-    <div class="screen">
+    <div class="screen" style="background:#fff;overflow-y:auto;">
       ${statusBar()}
-      <div class="home-top">
+
+      <!-- ПОИСК -->
+      <div style="padding:10px 14px 8px;background:#fff;">
         <div class="search-row">
           <div class="search-box">${ic.search}<span>Поиск по Kaspi.kz</span></div>
           <button class="cart-btn">${ic.cart}</button>
         </div>
       </div>
-      <div class="banners">
-        <div class="banner banner-tools">
-          <div class="banner-title">Подборка<br>для ремонта<br>и уюта</div>
-          <div class="banner-badge">🔥 Бонусы</div>
+
+      <!-- БАННЕРЫ -->
+      <div class="h-banners">
+        <div class="h-banner h-banner-shop">
+          <div class="h-banner-text">
+            <div class="h-banner-title">Бытовая<br>техника<br>и электроника</div>
+            <div class="h-banner-btn">Купить</div>
+          </div>
+          <div class="h-banner-label">Магазин на Kaspi.kz</div>
         </div>
-        <div class="banner banner-nauryz">
-          <div class="banner-title">НАУРЫЗ<br>ҚҰТТЫ<br>БОЛСЫН!</div>
-          <div class="banner-badge">🔥 Бонусы</div>
-          <div class="banner-badge-red">до -50%</div>
-        </div>
-      </div>
-      <div class="grid-menu">
-        ${menuItems.map(m => `
-          <button class="menu-item" ${m.nav ? `data-nav="${m.nav}"` : ''}>
-            <div class="menu-icon-wrap">${ic[m.icon]}</div>
-            <div class="menu-label">${m.label}</div>
-          </button>`).join('')}
-      </div>
-      <div class="promo-section">
-        <div class="promo-grid">
-          <div class="promo-row"><div class="promo-badge badge-red" style="font-size:11px;">0-0-12</div><div class="promo-text"><div class="promo-title">Рассрочка 0-0-12</div></div></div>
-          <div class="promo-row"><div class="promo-badge badge-green" style="font-size:20px;">⇄</div><div class="promo-text"><div class="promo-title">Кредиты</div><div class="promo-sub">до 2,2 млн</div></div></div>
-          <div class="promo-row"><div class="promo-badge badge-orange" style="font-size:11px;font-weight:900;">Red+</div><div class="promo-text"><div class="promo-title">Погасите выгодно</div><div class="promo-sub">Станет доступно 50 945 ₸</div></div></div>
-          <div class="promo-row"><div class="promo-badge badge-yellow" style="font-size:22px;">◉</div><div class="promo-text"><div class="promo-title">Накопи</div><div class="promo-sub">Депозит</div></div></div>
+        <div class="h-banner h-banner-travel">
+          <div class="h-banner-text">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e74a3b" stroke-width="2"><rect x="5" y="7" width="14" height="11" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+              <span style="font-weight:800;font-size:14px;color:#1a1a1a;">Kaspi Travel</span>
+            </div>
+            <div class="h-banner-title" style="color:#1a1a1a;">Авиа<br>и ЖД билеты</div>
+            <div class="h-banner-btn" style="background:#e74a3b;">Купить</div>
+          </div>
+          <div class="h-banner-label" style="background:#e74a3b;">Kaspi Travel</div>
         </div>
       </div>
-      <div class="watch-banner">
-        <div class="watch-banner-title">Продуктивно<br>каждый шаг!</div>
-        <div class="banner-badge">🔥 Бонусы</div>
-        <div class="banner-dots"><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+      <!-- СЕТКА МЕНЮ -->
+      <div class="h-grid-menu">
+        <!-- ряд 1 -->
+        <button class="h-menu-item">
+          <div class="h-menu-icon" style="color:#e74a3b;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.7L23 6H6"/></svg>
+          </div>
+          <span>Магазин</span>
+        </button>
+        <button class="h-menu-item">
+          <div class="h-menu-icon" style="color:#e74a3b;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/><rect x="13" y="13" width="5" height="5" rx="1"/></svg>
+          </div>
+          <span>Мой Банк</span>
+        </button>
+        <button class="h-menu-item">
+          <div class="h-menu-icon" style="color:#e74a3b;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+          </div>
+          <span>Платежи</span>
+        </button>
+        <button class="h-menu-item" data-nav="transfer">
+          <div class="h-menu-icon" style="color:#e74a3b;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 7h12"/><path d="m15 3 4 4-4 4"/><path d="M17 17H5"/><path d="m9 13-4 4 4 4"/></svg>
+          </div>
+          <span>Переводы</span>
+        </button>
+
+        <!-- ряд 2 -->
+        <button class="h-menu-item">
+          <div class="h-menu-icon">
+            <div style="width:38px;height:38px;background:#d81b60;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+              <span style="color:#fff;font-weight:900;font-size:18px;font-style:italic;">m</span>
+            </div>
+          </div>
+          <span>Magnum</span>
+        </button>
+        <button class="h-menu-item">
+          <div class="h-menu-icon" style="color:#e74a3b;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="7" width="14" height="11" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/><path d="M8 12h8"/></svg>
+          </div>
+          <span>Travel</span>
+        </button>
+        <button class="h-menu-item" data-nav="gov">
+          <div class="h-menu-icon" style="color:#e74a3b;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 21V10M20 21V10M12 3 4 10h16z"/><rect x="9" y="14" width="6" height="7"/></svg>
+          </div>
+          <span>Госуслуги</span>
+        </button>
+        <button class="h-menu-item">
+          <div class="h-menu-icon" style="color:#e74a3b;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="16" cy="14" r="2.5"/><path d="m18.5 16.5 2 2"/></svg>
+          </div>
+          <span>Работа</span>
+        </button>
       </div>
-      <div class="section-header">Вы недавно смотрели</div>
-      <div class="recent-scroll">
-        <div class="product-card"><div class="product-thumb protein"></div><div class="product-price">930 ₸</div></div>
-        <div class="product-card"><div class="product-thumb pink"></div><div class="product-price">1 004 ₸</div></div>
-        <div class="product-card"><div class="product-thumb dark"></div><div class="product-price">1 619 ₸</div></div>
-        <div class="product-card"><div class="product-thumb gold"></div><div class="product-price">2 024 ₸</div></div>
+
+      <!-- ПРОМО КАРТОЧКИ -->
+      <div class="h-promo-wrap">
+        <div class="h-promo-row">
+          <div class="h-promo-card">
+            <div class="h-promo-badge" style="background:#e74a3b;font-size:11px;font-weight:900;letter-spacing:-0.5px;">KREDIT</div>
+            <div>
+              <div class="h-promo-title">Кредит на Покупки</div>
+              <div class="h-promo-sub">Кредит или Рассрочка 0%</div>
+            </div>
+          </div>
+          <div class="h-promo-card">
+            <div class="h-promo-badge" style="background:#f5c800;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <div class="h-promo-title">Kaspi Депозит</div>
+              <div class="h-promo-sub">до 21% годовых</div>
+            </div>
+          </div>
+        </div>
+        <div class="h-promo-row">
+          <div class="h-promo-card">
+            <div class="h-promo-badge" style="background:#e74a3b;font-size:10px;font-weight:900;">0·0·12</div>
+            <div>
+              <div class="h-promo-title">Рассрочка 0-0-12</div>
+            </div>
+          </div>
+          <div class="h-promo-card">
+            <div class="h-promo-badge" style="background:#4caf50;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M7 7h12"/><path d="m15 3 4 4-4 4"/><path d="M17 17H5"/><path d="m9 13-4 4 4 4"/></svg>
+            </div>
+            <div>
+              <div class="h-promo-title">Кредиты</div>
+              <div class="h-promo-sub">до 2,2 млн</div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- ФИЛЬТРЫ -->
+      <div class="h-filters">
+        <button class="h-filter active">Рекомендации</button>
+        <button class="h-filter"><span>🏷</span> Скидки</button>
+        <button class="h-filter"><span>🔥</span> Туры</button>
+        <button class="h-filter"><span style="color:#d81b60;font-weight:900;font-style:italic;">m</span> Magnum</button>
+      </div>
+
+      <!-- ТОВАРЫ -->
+      <div class="h-products">
+        <div class="h-product-card">
+          <div class="h-product-img" style="background:linear-gradient(135deg,#1a1a1a,#3a3a3a);">
+            <div class="h-discount">-15%</div>
+            <div class="h-heart">♡</div>
+          </div>
+          <div class="h-product-info">
+            <div class="h-product-name">Планшет с клавиатурой</div>
+            <div class="h-product-price">89 990 ₸</div>
+            <div class="h-product-old">105 900 ₸</div>
+          </div>
+        </div>
+        <div class="h-product-card">
+          <div class="h-product-img" style="background:linear-gradient(135deg,#b8b8b8,#e0e0e0);">
+            <div class="h-heart">♡</div>
+          </div>
+          <div class="h-product-info">
+            <div class="h-product-name">Электрическая бритва Xiaomi</div>
+            <div class="h-product-price">24 990 ₸</div>
+          </div>
+        </div>
+        <div class="h-product-card">
+          <div class="h-product-img" style="background:linear-gradient(135deg,#2196f3,#64b5f6);">
+            <div class="h-heart">♡</div>
+          </div>
+          <div class="h-product-info">
+            <div class="h-product-name">Наушники беспроводные</div>
+            <div class="h-product-price">12 500 ₸</div>
+          </div>
+        </div>
+        <div class="h-product-card">
+          <div class="h-product-img" style="background:linear-gradient(135deg,#ff9800,#ffcc02);">
+            <div class="h-heart">♡</div>
+          </div>
+          <div class="h-product-info">
+            <div class="h-product-name">Умная колонка</div>
+            <div class="h-product-price">8 990 ₸</div>
+          </div>
+        </div>
+      </div>
+
       ${bottomNav('home')}
     </div>`;
 }
