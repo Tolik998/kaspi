@@ -129,8 +129,8 @@ function idCardScreen() {
         <button class="seg-tab ${!isDoc ? 'active' : ''}" id="tabReq">Реквизиты</button>
       </div>
 
-      <!-- ФОТО ЗОНА — большой серый прямоугольник -->
-      <div id="photoArea" style="flex:1;background:#c8c8cc;position:relative;overflow:hidden;cursor:pointer;touch-action:none;">
+      <!-- ФОТО ЗОНА — пропорция удостоверения 2481x3508 ≈ 1:1.41 -->
+      <div id="photoArea" style="width:100%;aspect-ratio:2481/3508;background:#c8c8cc;position:relative;overflow:hidden;cursor:pointer;touch-action:none;max-height:60vh;">
         ${photo
           ? `<img id="zoomImg" src="${photo}" style="width:100%;height:100%;object-fit:contain;transform-origin:center center;display:block;" />`
           : `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:#888;">
