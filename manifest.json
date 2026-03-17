@@ -1,6 +1,6 @@
 {
   "name": "Kaspi.kz",
-  "short_name": "Kaspi",
+  "short_name": "Kaspi.kz",
   "description": "Kaspi.kz — магазин, банк, платежи",
   "start_url": "./index.html",
   "display": "standalone",
