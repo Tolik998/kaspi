@@ -147,7 +147,7 @@ button { -webkit-tap-highlight-color: transparent; }
 .nav-item.active { color: var(--accent); }
 .home-bar { width: 134px; height: 5px; background: #000; border-radius: 999px; margin: 10px auto 0; }
 
-/* QR MODAL (bottom-sheet) */
+/* QR MODAL (center dialog) */
 .qr-modal {
   display: none;
   position: fixed;
@@ -163,14 +163,48 @@ button { -webkit-tap-highlight-color: transparent; }
 .qr-sheet {
   position: absolute;
   left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: min(100%, var(--phone-width));
-  border-radius: 20px 20px 0 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, var(--phone-width));
+  max-height: min(86vh, 760px);
+  border-radius: 22px;
   overflow: hidden;
-  background: #fff;
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
+  background: #f2f2f2;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+}
+.qr-top {
+  position: relative;
+  height: 44px;
+  flex: 0 0 44px;
+}
+.qr-handle {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.16);
+}
+.qr-close {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 36px;
+  color: #1f1f24;
+  cursor: pointer;
+}
+.qr-content {
+  flex: 1 1 auto;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 .qr-sheet img {
