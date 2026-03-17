@@ -113,18 +113,9 @@ function idCardScreen() {
     <!-- QR MODAL -->
     <div id="qrModal" style="display:none;position:fixed;bottom:0;left:0;right:0;top:0;z-index:100;">
       <div id="qrOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);"></div>
-      <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,393px);background:#f2f2f7;border-radius:20px 20px 0 0;padding:14px 20px 34px;">
-        <div style="width:36px;height:4px;background:#ccc;border-radius:2px;margin:0 auto 14px;"></div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-          <div style="font-size:18px;font-weight:700;color:#1f1f24;">Удостоверение личности</div>
-          <button id="closeQr" style="background:transparent;border:none;font-size:20px;color:#666;padding:4px;line-height:1;">✕</button>
-        </div>
-        <div style="text-align:center;color:#555;font-size:14px;margin-bottom:12px;">Покажите QR-код сотруднику</div>
-        <div style="display:flex;justify-content:center;margin-bottom:12px;">
-          <img src="${IMG_QR}" style="width:200px;height:200px;object-fit:contain;" />
-        </div>
-        <div style="text-align:center;color:#888;font-size:13px;margin-bottom:6px;">или скажите код</div>
-        <div style="text-align:center;font-size:28px;font-weight:800;color:#1f1f24;letter-spacing:5px;" id="qrCode"></div>
+      <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,393px);border-radius:20px 20px 0 0;overflow:hidden;">
+        <button id="closeQr" style="position:absolute;top:0;right:0;width:100%;height:100%;background:transparent;border:none;cursor:pointer;z-index:1;"></button>
+        <img src="${IMG_QR}" style="width:100%;display:block;" />
       </div>
     </div>`;
 
