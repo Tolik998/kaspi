@@ -50,7 +50,7 @@ function bottomNav(active = 'home') {
 function homeScreen() {
   return `
     <div style="position:relative;width:100%;background:#fff;">
-      <img src="img_home.png" style="width:100%;display:block;" />
+      <img src="${IMG_HOME}" style="width:100%;display:block;" />
       <button data-nav="transfer" style="position:absolute;top:28%;left:75%;width:25%;height:8%;background:transparent;border:none;cursor:pointer;"></button>
       <button data-nav="gov" style="position:absolute;top:36%;left:50%;width:25%;height:8%;background:transparent;border:none;cursor:pointer;"></button>
     </div>`;
@@ -61,7 +61,7 @@ function transferScreen() {
   return `
     <div style="position:relative;width:100%;background:#fff;">
       <button data-nav="home" style="position:absolute;top:4%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
-      <img src="img_transfer.png" style="width:100%;display:block;" />
+      <img src="${IMG_TRANSFER}" style="width:100%;display:block;" />
     </div>`;
 }
 
@@ -70,7 +70,7 @@ function govScreen() {
   return `
     <div style="position:relative;width:100%;background:#f5f5f7;">
       <button data-nav="home" style="position:absolute;top:4%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
-      <img src="img_gov.png" style="width:100%;display:block;" />
+      <img src="${IMG_GOV}" style="width:100%;display:block;" />
       <button data-nav="idcard" style="position:absolute;top:28%;left:2%;width:46%;height:16%;background:transparent;border:none;cursor:pointer;"></button>
     </div>`;
 }
@@ -121,7 +121,7 @@ function idCardScreen() {
         </div>
         <div style="text-align:center;color:#555;font-size:14px;margin-bottom:12px;">Покажите QR-код сотруднику</div>
         <div style="display:flex;justify-content:center;margin-bottom:12px;">
-          <img src="img_qr.png" style="width:200px;height:200px;object-fit:contain;" />
+          <img src="${IMG_QR}" style="width:200px;height:200px;object-fit:contain;" />
         </div>
         <div style="text-align:center;color:#888;font-size:13px;margin-bottom:6px;">или скажите код</div>
         <div style="text-align:center;font-size:28px;font-weight:800;color:#1f1f24;letter-spacing:5px;" id="qrCode"></div>
