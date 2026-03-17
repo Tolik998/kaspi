@@ -6,7 +6,7 @@
   --muted: #8f8f95;
   --line: #ececec;
   --phone-width: 393px;
-  --btn-lift: 10px;
+  --btn-lift: 18px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
