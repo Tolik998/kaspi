@@ -62,7 +62,7 @@ function homeScreen() {
 function transferScreen() {
   return `
     <div style="position:relative;width:100%;background:#fff;">
-      <фbutton data-nav="home" style="position:absolute;top:2.5%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
+      <button data-nav="home" style="position:absolute;top:2.5%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
       <img src="${IMG_TRANSFER}" style="width:100%;display:block;" />
     </div>`;
 }
