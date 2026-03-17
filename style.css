@@ -147,7 +147,7 @@ button { -webkit-tap-highlight-color: transparent; }
 .nav-item.active { color: var(--accent); }
 .home-bar { width: 134px; height: 5px; background: #000; border-radius: 999px; margin: 10px auto 0; }
 
-/* QR MODAL (center dialog) */
+/* QR MODAL (bottom-sheet like in Kaspi) */
 .qr-modal {
   display: none;
   position: fixed;
@@ -163,13 +163,13 @@ button { -webkit-tap-highlight-color: transparent; }
 .qr-sheet {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(92vw, var(--phone-width));
-  height: min(86vh, 760px);
-  border-radius: 22px;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(100%, var(--phone-width));
+  max-height: min(72vh, 640px);
+  border-radius: 22px 22px 0 0;
   overflow: hidden;
-  background: transparent;
+  background: #f2f2f2;
   box-shadow: 0 24px 80px rgba(0,0,0,0.35);
   display: flex;
   flex-direction: column;
@@ -182,9 +182,7 @@ button { -webkit-tap-highlight-color: transparent; }
   padding: 0;
 }
 .qr-sheet img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
   display: block;
 }
