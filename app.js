@@ -49,7 +49,7 @@ const ic = {
 
 let qrEscBound = false;
 
-function statusBar(height = 44) {
+function statusBar(height = 0) {
   return `<div style="height:${height}px;background:#fff;"></div>`;
 }
 
