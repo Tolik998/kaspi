@@ -76,7 +76,7 @@ function bottomNav(active = 'home') {
 function homeScreen() {
   return `
     <div style="width:100%;background:#fff;display:flex;flex-direction:column;">
-      ${statusBar(58)}
+      ${statusBar(0)}
       <div style="position:relative;width:100%;background:#fff;">
         <img src="${IMG_HOME}" style="width:100%;display:block;" />
         <button data-nav="transfer" style="position:absolute;top:21%;left:75%;width:25%;height:8%;background:transparent;border:none;cursor:pointer;"></button>
