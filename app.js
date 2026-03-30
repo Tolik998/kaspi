@@ -89,7 +89,7 @@ function homeScreen() {
 function transferScreen() {
   return `
     <div style="width:100%;background:#fff;display:flex;flex-direction:column;">
-      ${statusBar(58)}
+      ${statusBar(0)}
       <div style="position:relative;width:100%;background:#fff;">
         <button data-nav="home" style="position:absolute;top:2.5%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
         <img src="${IMG_TRANSFER}" style="width:100%;display:block;" />
@@ -101,7 +101,7 @@ function transferScreen() {
 function govScreen() {
   return `
     <div style="width:100%;background:#f5f5f7;display:flex;flex-direction:column;">
-      ${statusBar(58)}
+      ${statusBar(0)}
       <div style="position:relative;width:100%;background:#f5f5f7;">
         <button data-nav="home" style="position:absolute;top:2.5%;left:2%;width:10%;height:4%;background:transparent;border:none;cursor:pointer;z-index:10;"></button>
         <img src="${IMG_GOV}" style="width:100%;display:block;" />
