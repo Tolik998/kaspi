@@ -184,7 +184,7 @@ function idCardScreen() {
         <button class="back-btn" data-nav="gov">${ic.back}</button>
         <div class="page-title">Удостоверение личности</div>
       </div>
-      <div class="seg-tabs" style="margin:10px 16px;flex:0 0 auto;">
+      <div class="seg-tabs" style="margin:10px 16px 0;flex:0 0 auto;">
         <button class="seg-tab ${isDoc ? 'active' : ''}" id="tabDoc">Документ</button>
         <button class="seg-tab ${!isDoc ? 'active' : ''}" id="tabReq">Реквизиты</button>
       </div>
