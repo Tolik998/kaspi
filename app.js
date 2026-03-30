@@ -179,7 +179,7 @@ function idCardScreen() {
 
   return `
     <div style="background:#fff;min-height:100vh;display:flex;flex-direction:column;">
-      ${statusBar(42)}
+      ${statusBar(0)}
       <div class="page-header" style="background:#fff;border-bottom:1px solid #f0f0f0;flex:0 0 auto;">
         <button class="back-btn" data-nav="gov">${ic.back}</button>
         <div class="page-title">Удостоверение личности</div>
